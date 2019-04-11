@@ -11,9 +11,11 @@ import '../Styles/Components.css';
 
 class App extends Component {
 
+  /**
+   * create an empty state to populate the fields with all the data from the back end.
+   */
   constructor() {
     super();
-
     this.state = {
       data: {},
       error: {},
@@ -21,6 +23,11 @@ class App extends Component {
     };
   }
 
+/**
+ * function to handle the promisses and data on both ways
+ * isLoading is a flag to show or hide the loading animation
+ * @param info: expected info from the state
+ */
   submit = (info) => {
     this.setState({
       error: {},
@@ -65,6 +72,7 @@ class App extends Component {
         <FormComponents onSubmit={this.submit} />
         <TableComponent data={this.state.data}/>
         {
+          //Show loading Animation
         isLoading?
           <div className="loading">
             <CircularProgress />
@@ -75,11 +83,12 @@ class App extends Component {
           
         <div>
           {
+            // there're two types of erros coming from the back end
             (this.state.error && this.state.error.fields) ?
               this.state.error.fields.map( (field) => {
                   return (
-                    <div className="error">
-                      <Paper elevation={2} key={field.field}>
+                    <div key={field.field} className="error">
+                      <Paper elevation={2} >
                       <ErrorIcon />
                       <Typography component="p">
                         {field.message}
@@ -97,8 +106,8 @@ class App extends Component {
             (this.state.error && this.state.error.messages) ?
               this.state.error.messages.map ((message, idx) => {
                 return (
-                    <div className="error">
-                      <Paper elevation={2} key={idx}>
+                    <div key={idx} className="error">
+                      <Paper elevation={2} >
                         <ErrorIcon />
                         <Typography component="p">
                           {message}

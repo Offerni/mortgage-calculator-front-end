@@ -43,8 +43,6 @@ class TableComponent extends Component {
                 </div>
             );
         }
-
-        console.log(data);
         return (
             <div>
                 {display}

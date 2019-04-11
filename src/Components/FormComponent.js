@@ -18,6 +18,9 @@ class FormComponents extends Component {
         };
     }
     
+    /**
+     * populate info object with info keys and values of the form inputs
+     */
     handleChange = event => {
         let info = {};
         Object.assign(info, this.state.info);
@@ -25,6 +28,9 @@ class FormComponents extends Component {
         this.setState({info});
     };
      
+    /**
+     * Disable the button if any of the expected fields are empty
+     */
     handleDisabled = () => {
         const {
             property_price,
@@ -42,8 +48,8 @@ class FormComponents extends Component {
     }
 
     render() {
+        //get the submit function that was sent via props
         const {onSubmit} = this.props;
-        console.log(this.state);
         return(
         <div>    
             <form className="form-component" name="form">
@@ -126,6 +132,7 @@ class FormComponents extends Component {
             </form>
             <div className="btn-form">
                 <Button
+                    //calls onSubmit funcion passing the form data
                     onClick={() => onSubmit(this.state.info)}
                     variant="contained" color="primary"
                     type="button"
